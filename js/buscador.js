@@ -186,6 +186,15 @@ function mostrarAutos(autos){
 };
 
 function filtraAutos(){
-    console.log('hola')
+    const resultado = obtenerAutos().filter(filtrarMarca);
+    console.log(resultado)
+};
+
+function filtrarMarca(auto){
+    if(datosBusqueda.marca){
+        return auto.marca === datosBusqueda.marca;
+    }else{
+
+    }
 }
 
