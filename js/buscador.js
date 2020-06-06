@@ -150,7 +150,7 @@ let datosBusqueda = {
     puertas:'',
     transmision:'',
     color:''
-}
+};
 
 //EventListener DOM Loaded
 const autos = obtenerAutos();
@@ -160,6 +160,15 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 //Event listener para el formulario
+const marca = document.querySelector('#marca');
+marca.addEventListener('input', e => {
+    datosBusqueda.marca = e.target.value;
+
+    //Mandar llamar a la funcion filtrar autos
+
+    filtraAutos();
+})
+
 
 
 function mostrarAutos(autos){
@@ -175,4 +184,8 @@ function mostrarAutos(autos){
             contenedor.appendChild(autoHTML);
     });
 };
+
+function filtraAutos(){
+    console.log('hola')
+}
 
