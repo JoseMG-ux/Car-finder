@@ -203,14 +203,18 @@ color.addEventListener('input', e => {
     filtraAutos();//Mandar llamar a la funcion filtrar autos
 });  
 
-function mostrarAutos(autos){
+function limpiarHTML(){
     //Leer el elemento resutlado
     const contenedor = document.querySelector('#resultado');
-    
     //Limpiar los resultados anteriores
     while(contenedor.firstChild){
         contenedor.removeChild(contenedor.firstChild)
     }
+}
+
+function mostrarAutos(autos){
+    limpiarHTML();
+    const contenedor = document.querySelector('#resultado');
 
     //Construir HTML de los autos
     autos.forEach(auto => {
@@ -222,12 +226,23 @@ function mostrarAutos(autos){
     });
 };
 
+
+function noResultado(){
+    limpiarHTML();
+
+    const noResultado = document.createElement('div');
+
+    noResultado.classList.add('alerta','error');
+    noResultado.appendChild(document.createTextNode('No hay resultados'));
+    document.querySelector('#resultado').appendChild(noResultado);
+}
+
 function filtraAutos(){
     const resultado = obtenerAutos().filter(filtrarMarca).filter(filtrarYear).filter(filtrarMinimo).filter(filtrarMaximo).filter(filtrarPuertas).filter(filtrarTransmision).filter(filtrarColor);
     if(resultado.length){
         mostrarAutos(resultado)
     }else{
-        alert('No hay resultados')
+        noResultado();
     }
 };
 
