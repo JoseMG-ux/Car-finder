@@ -172,9 +172,18 @@ year.addEventListener('input', e => {
     datosBusqueda.year = Number(e.target.value);
     filtraAutos();//Mandar llamar a la funcion filtrar autos
 });
-
-
-
+//MINIMO
+const minimo = document.querySelector('#minimo');
+minimo.addEventListener('input', e => {
+    datosBusqueda.minimo = Number(e.target.value);
+    filtraAutos();//Mandar llamar a la funcion filtrar autos
+}); 
+//MAXIMO
+const maximo = document.querySelector('#maximo');
+maximo.addEventListener('input', e => {
+    datosBusqueda.maximo = Number(e.target.value);
+    filtraAutos();//Mandar llamar a la funcion filtrar autos
+}); 
 
 
 function mostrarAutos(autos){
@@ -197,7 +206,7 @@ function mostrarAutos(autos){
 };
 
 function filtraAutos(){
-    const resultado = obtenerAutos().filter(filtrarMarca).filter(filtrarYear);
+    const resultado = obtenerAutos().filter(filtrarMarca).filter(filtrarYear).filter(filtrarMinimo).filter(filtrarMaximo);
     if(resultado.length){
         mostrarAutos(resultado)
     }else{
@@ -220,5 +229,20 @@ function filtrarYear(auto){
     }else{
         return auto;
     }
+};
+function filtrarMinimo(auto){
+    if(datosBusqueda.minimo){
+        return auto.precio >= datosBusqueda.minimo;
+    }else{
+        return auto;
+    }
+};
+function filtrarMaximo(auto){
+    if(datosBusqueda.maximo){
+        return auto.precio <= datosBusqueda.maximo;
+    }else{
+        return auto;
+    }
 }
+
 
