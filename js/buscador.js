@@ -184,7 +184,24 @@ maximo.addEventListener('input', e => {
     datosBusqueda.maximo = Number(e.target.value);
     filtraAutos();//Mandar llamar a la funcion filtrar autos
 }); 
-
+//PUERTAS
+const puertas = document.querySelector('#puertas');
+puertas.addEventListener('input', e => {
+    datosBusqueda.puertas = Number(e.target.value);
+    filtraAutos();//Mandar llamar a la funcion filtrar autos
+}); 
+//Transmision
+const transmision = document.querySelector('#transmision');
+transmision.addEventListener('input', e => {
+    datosBusqueda.transmision = e.target.value;
+    filtraAutos();//Mandar llamar a la funcion filtrar autos
+});
+//color
+const color = document.querySelector('#color');
+color.addEventListener('input', e => {
+    datosBusqueda.color = e.target.value;
+    filtraAutos();//Mandar llamar a la funcion filtrar autos
+});  
 
 function mostrarAutos(autos){
     //Leer el elemento resutlado
@@ -206,7 +223,7 @@ function mostrarAutos(autos){
 };
 
 function filtraAutos(){
-    const resultado = obtenerAutos().filter(filtrarMarca).filter(filtrarYear).filter(filtrarMinimo).filter(filtrarMaximo);
+    const resultado = obtenerAutos().filter(filtrarMarca).filter(filtrarYear).filter(filtrarMinimo).filter(filtrarMaximo).filter(filtrarPuertas).filter(filtrarTransmision).filter(filtrarColor);
     if(resultado.length){
         mostrarAutos(resultado)
     }else{
@@ -243,6 +260,27 @@ function filtrarMaximo(auto){
     }else{
         return auto;
     }
-}
+};
+function filtrarPuertas(auto){
+    if(datosBusqueda.puertas){
+        return auto.puertas === datosBusqueda.puertas;
+    }else{
+        return auto;
+    }
+};
+function filtrarTransmision(auto){
+    if(datosBusqueda.transmision){
+        return auto.transmision === datosBusqueda.transmision;
+    }else{
+        return auto;
+    }
+};
+function filtrarColor(auto){
+    if(datosBusqueda.color){
+        return auto.color === datosBusqueda.color;
+    }else{
+        return auto;
+    }
+};
 
 
