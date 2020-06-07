@@ -160,14 +160,20 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 //Event listener para el formulario
+//MARCA
 const marca = document.querySelector('#marca');
 marca.addEventListener('input', e => {
     datosBusqueda.marca = e.target.value;
+    filtraAutos();//Mandar llamar a la funcion filtrar autos
+});
+//AÑO
+const year = document.querySelector('#year');
+year.addEventListener('input', e => {
+    datosBusqueda.year = Number(e.target.value);
+    filtraAutos();//Mandar llamar a la funcion filtrar autos
+});
 
-    //Mandar llamar a la funcion filtrar autos
 
-    filtraAutos();
-})
 
 
 
@@ -175,7 +181,12 @@ function mostrarAutos(autos){
     //Leer el elemento resutlado
     const contenedor = document.querySelector('#resultado');
     
-    
+    //Limpiar los resultados anteriores
+    while(contenedor.firstChild){
+        contenedor.removeChild(contenedor.firstChild)
+    }
+
+    //Construir HTML de los autos
     autos.forEach(auto => {
             const autoHTML = document.createElement('p');
             autoHTML.innerHTML = `
@@ -186,15 +197,28 @@ function mostrarAutos(autos){
 };
 
 function filtraAutos(){
-    const resultado = obtenerAutos().filter(filtrarMarca);
-    console.log(resultado)
+    const resultado = obtenerAutos().filter(filtrarMarca).filter(filtrarYear);
+    if(resultado.length){
+        mostrarAutos(resultado)
+    }else{
+        alert('No hay resultados')
+    }
 };
 
+
+//FILTRO DE DATOS
 function filtrarMarca(auto){
     if(datosBusqueda.marca){
         return auto.marca === datosBusqueda.marca;
     }else{
-
+        return auto;
+    }
+};
+function filtrarYear(auto){
+    if(datosBusqueda.year){
+        return auto.year === datosBusqueda.year;
+    }else{
+        return auto;
     }
 }
 
