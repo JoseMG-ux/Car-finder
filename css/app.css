@@ -53,3 +53,14 @@ form {
 .error {
     background-color: red;
 }
+
+footer {
+    border-top: 1px solid #e1e1e1;
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  footer a {
+    text-decoration: none;
+    font-weight: bold;
+  }
