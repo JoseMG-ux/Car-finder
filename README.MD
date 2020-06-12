@@ -7,5 +7,5 @@
 
 
 # 👨‍💻 ![Twitter Follow](https://img.shields.io/twitter/follow/Gzjosemgz?style=social)
-![Jose Moreno Gomez](https://repository-images.githubusercontent.com/270121539/f3c7df00-aa96-11ea-84ff-eb082eb11050)
+![Jose Moreno Gomez](https://repository-images.githubusercontent.com/270121539/159ba000-ac16-11ea-936d-0353c04e7b6d)
 
